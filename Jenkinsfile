@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'docker run --rm $imagename -m pytest --suppress-no-test-exit-code'
+                sh 'docker run --rm --entrypoint python3 $imagename -m pytest --suppress-no-test-exit-code'
             }
         }
         stage('Publish') { 
