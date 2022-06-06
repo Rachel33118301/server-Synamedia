@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        imagename="udp-derver"
+        imagename="udp-server"
     }
 
     stages {
@@ -17,11 +17,11 @@ pipeline {
         }
         stage('Publish') { 
             steps {
-               withCredentials([usernamePassword(credentialsId: '9c9b3ac6-bc43-49ee-9bbb-6de9f7d42482', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+               withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh '''
-                    echo $PASSWORD | docker login -u $USERNAME --password-stdin ghcr.io
-                    docker tag $imagename ghcr.io/Rachel33118301/$imagename
-                    docker push ghcr.io/Rachel33118301/$imagename
+                    echo $PASSWORD | docker login -u $USERNAME --password-stdin
+                    docker tag $imagename cdrachel/$imagename
+                    docker push cdrachel/$imagename
                 '''
               }
             }
