@@ -1,16 +1,9 @@
 pipeline {
+    agent any
     environment {
         imagename="udp-derver"
     }
-    // agent {
-    //     docker {
-    //         // maven:3.8.1-adoptopenjdk
-    //         image 'cdrachel/cdnode'
-    //         args '-v /root/.m2:/root/.m2'
 
-            
-    //     }
-    // }
     stages {
         stage('Build') {
             steps {
@@ -19,7 +12,7 @@ pipeline {
         }
         stage('Test') { 
             steps {
-                sh 'docker run --rm $imagename -m pytest --ignore=cs_utils --suppress-no-test-exit-code'
+                sh 'docker run --rm $imagename -m pytest --suppress-no-test-exit-code'
             }
         }
         stage('Publish') { 
