@@ -27,4 +27,10 @@ pipeline {
             }
         }
     }
+    post{
+        always { // Clean after build
+            cleanWs()
+            sh 'docker image rm $imagename'
+        }
+    }
 }
