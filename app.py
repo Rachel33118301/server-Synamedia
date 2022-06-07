@@ -25,7 +25,7 @@ while True:
         if json.loads(data.decode())['hash'] == md5_returned:
             print("MD5 verified OK.")
         else:
-            print("MD5 verification failed!.")
+            print("MD5 verification failed!!.")
 
         path = f'.\\recived_files'
         os.makedirs(path, exist_ok=True)
